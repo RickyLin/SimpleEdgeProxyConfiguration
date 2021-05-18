@@ -8,7 +8,7 @@ You can pull or download source code, then turn on Developer Mode in Microsoft E
 
 ## Screenshot
 
-
+![UI Screenshot](https://github.com/RickyLin/SimpleEdgeProxyConfiguration/blob/main/documents/images/UI.png)
 
 ## Usage
 
