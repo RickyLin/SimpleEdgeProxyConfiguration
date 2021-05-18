@@ -1,0 +1,16 @@
+{
+    "name": "Proxy Configuration",
+    "version": "0.0.0.1",
+    "manifest_version": 2,
+    "description": "Switch proxy configuration",
+    "permissions":[
+        "proxy",
+        "storage"
+    ],
+    "icons":{
+        "128": "icons/global_off_128.png"
+    },
+    "browser_action": {
+        "default_popup": "configuration.html"
+    }
+}

@@ -1,0 +1,44 @@
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>Proxy Configuration</title>
+        <style>
+            div.textbox {
+                display: flex;
+                flex-direction: column;
+                padding: 2px;
+            }
+
+            button {
+                margin-bottom: 2px;
+                align-self:flex-end;
+            }
+
+            button:last-child {
+                margin-left: 2px;
+            }
+        </style>
+    </head>
+    <body>
+        <div style="display: flex;">
+            <div class="textbox">
+                <label>Server:</label>
+                <input type="text" id="tbServer">
+            </div>
+            <div class="textbox">
+                <label>Port:</label>
+                <input type="number" id="tbPort">
+            </div>
+            <button id="btnSet">Set</button>
+            <button id="btnClear">Clear</button>
+        </div>
+        <div>
+            <label><b>Current Proxy Configuration:</b></label>
+            <pre id="lblCurrentConfiguration"></pre>
+        </div>
+        <div>
+            <label id="lblMsg" style="color:red;"></label>
+        </div>
+        <script src="configuration.js"></script>
+    </body>
+</html>
