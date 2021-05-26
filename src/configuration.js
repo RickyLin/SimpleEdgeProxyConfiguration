@@ -19,6 +19,23 @@ function initializeConfiguration() {
 
         document.getElementById('tbServer').value = cfg.proxy.server;
         document.getElementById('tbPort').value = cfg.proxy.port;
+
+        let bypassList;
+
+        if (cfg.proxy.bypassList !== null && cfg.proxy.bypassList !== undefined) {
+            if (cfg.proxy.bypassList.length === 0) {
+                bypassList = '';
+            }
+            else {
+                bypassList = cfg.proxy.bypassList.join('\n');
+            }
+        }
+        else {
+            let defaultBypassList = ['localhost', '127.0.0.1', '::1'];
+            bypassList = defaultBypassList.join('\n');
+        }
+
+        document.getElementById('tbBypassList').value = bypassList;
     });
 }
 
@@ -29,6 +46,19 @@ const btnSet = document.getElementById('btnSet');
 btnSet.onclick = function () {
     const server = document.getElementById('tbServer').value;
     const port = document.getElementById('tbPort').value;
+    let bypassList = document.getElementById('tbBypassList').value.trim();
+    let bypassListArray = [];
+
+    if (bypassList !== '') {
+        let bypassItems = bypassList.split('\n');
+        bypassItems.forEach(item => {
+            let trimmedItem = item.trim();
+
+            if (trimmedItem !== '') {
+                bypassListArray.push(trimmedItem);
+            }
+        });
+    }
 
     let proxyCfg = {
         mode: 'fixed_servers',
@@ -38,11 +68,7 @@ btnSet.onclick = function () {
                 host: server,
                 port: parseInt(port)
             },
-            bypassList: [
-                'localhost',
-                '127.0.0.1',
-                '::1'
-            ]
+            bypassList: bypassListArray
         }
     };
 
@@ -56,7 +82,8 @@ btnSet.onclick = function () {
     chrome.storage.local.set({
         proxy: {
             server: server,
-            port: port
+            port: port,
+            bypassList: bypassListArray
         }
     });
 
